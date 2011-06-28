@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="JSCal2-1.8/css/jscal2.css" />
+    <link type="text/css" rel="stylesheet" href="JSCal2-1.8/css/border-radius.css" />
+
+    <link id="skin-win2k" title="Win 2K" type="text/css" rel="alternate stylesheet" href="JSCal2-1.8/css/win2k/win2k.css" />
+    <link id="skin-steel" title="Steel" type="text/css" rel="alternate stylesheet" href="JSCal2-1.8/css/steel/steel.css" />
+    <link id="skin-gold" title="Gold" type="text/css" rel="alternate stylesheet" href="JSCal2-1.8/css/gold/gold.css" />
+    <link id="skin-matrix" title="Matrix" type="text/css" rel="alternate stylesheet" href="JSCal2-1.8/css/matrix/matrix.css" />
+ 
+    <link id="skinhelper-compact" type="text/css" rel="alternate stylesheet" href="JSCal2-1.8/css/reduce-spacing.css" />
+ 
+    <script src="JSCal2-1.8/js/jscal2.js" ></script>
+   	<script src="JSCal2-1.8/js/lang/en.js" ></script>
+   
+
+  </head>
+  <body style="background-color: #fff">
+
+          <table class="properties">
+   
+            <tr>
+              <td class="label">
+                <label for="f_rangeStart">Disable dates before:</label>
+              </td>
+              <td>
+                <input id="f_rangeStart" />
+                <button id="f_rangeStart_trigger">...</button>
+                <button id="f_clearRangeStart" onclick="clearRangeStart()">clear</button>
+                <script type="text/javascript">
+                  new Calendar({
+                          inputField: "f_rangeStart",
+                          dateFormat: "%B %d, %Y",
+                          trigger: "f_rangeStart_trigger",
+                          bottomBar: false,
+                          onSelect: function() {
+                                  var date = Calendar.intToDate(this.selection.get());
+                                  LEFT_CAL.args.min = date;
+                                  LEFT_CAL.redraw();
+                                  this.hide();
+                          }
+                  });
+                  function clearRangeStart() {
+                          document.getElementById("f_rangeStart").value = "";
+                          LEFT_CAL.args.min = null;
+                          LEFT_CAL.redraw();
+                  };
+                </script>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="label">
+                <label for="f_rangeEnd">Disable dates after:</label>
+              </td>
+              <td>
+                <input id="f_rangeEnd" />                
+                <button id="f_clearRangeEnd" onclick="clearRangeEnd()">clear</button>
+                <script type="text/javascript">
+                  new Calendar({
+                          inputField: "f_rangeEnd",
+                          dateFormat: "%B %d, %Y",
+                          trigger: "f_rangeEnd",
+                          bottomBar: false,
+                          onSelect: function() {
+                                  var date = Calendar.intToDate(this.selection.get());
+                                  LEFT_CAL.args.max = date;
+                                  LEFT_CAL.redraw();
+                                  this.hide();
+                          }
+                  });
+                  function clearRangeEnd() {
+                          document.getElementById("f_rangeEnd").value = "";
+                          LEFT_CAL.args.max = null;
+                          LEFT_CAL.redraw();
+                  };
+                </script>
+              </td>
+            </tr>
+          </table>
+    
+        <div class="form-row">            
+        <label for="doB">Date of Birth:</label>            
+        <span class="input"><input id="doB" name="doB" type="text" value=""/></span>        
+  
+                <button id="f_clearRangeEnd1" onclick="clearRangeEnd1()">clear</button> 
+                <script type="text/javascript"> 
+                  new Calendar({
+                          inputField: "doB",
+                          dateFormat: "%m/%d/%Y",
+                          trigger: "doB",
+                          bottomBar: false,
+                          onSelect: function() {
+                                  var date = Calendar.intToDate(this.selection.get());
+                                  LEFT_CAL.args.max = date;
+                                  LEFT_CAL.redraw();
+                                  this.hide();
+                          }
+                  });
+                  function clearRangeEnd1() {
+                          document.getElementById("doB").value = "";
+                          LEFT_CAL.args.max = null;
+                          LEFT_CAL.redraw();
+                  };
+                </script>	
+                      </div>     
+
+  </body>
+</html>

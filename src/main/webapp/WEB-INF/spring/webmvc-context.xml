@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/mvc
+                           http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <mvc:annotation-driven />
+    
+    <mvc:view-controller path="/index.html" />
+
+    <bean id="tilesConfigurer"
+          class="org.springframework.web.servlet.view.tiles2.TilesConfigurer"
+          p:definitions="/WEB-INF/tiles-defs/templates.xml" />
+ 
+    <bean id="tilesViewResolver"
+          class="org.springframework.web.servlet.view.UrlBasedViewResolver"
+          p:viewClass="com.parakhcomputer.web.servlet.view.tiles2.DynamicTilesView"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" />
+
+ 	<!-- Register the Customer.properties -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"
+          p:basenames="messages" />
+    
+    <!-- Declare the Interceptor -->
+    <mvc:interceptors>    
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"
+              p:paramName="locale" />
+    </mvc:interceptors>
+    
+    <!-- Declare the Resolver -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+    
+    
+    
+    
+  <bean 
+  class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
+ 
+ <bean id="multipartResolver"
+	class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+	<bean class="com.mkyong.common.controller.FileUploadController">
+		<property name="formView" value="FileUploadForm" />
+		<property name="successView" value="FileUploadSuccess" />
+		<property name="validator">
+			<bean class="com.mkyong.common.validator.FileUploadValidator" />
+		</property>
+	</bean>    
+<!-- 
+
+ 
+	<bean id="viewResolver"
+	      class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+          <property name="prefix">
+              <value>/WEB-INF/pages/</value>
+           </property>
+          <property name="suffix">
+             <value>.jsp</value>
+          </property>
+    </bean>
+ -->    
+
+</beans>

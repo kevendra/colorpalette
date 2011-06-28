@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="dataSource"
+          class="ocom.parakhcomputer.jdbc.datasource.HsqldbInitializingDriverManagerDataSource" />
+          
+    <bean id="sqlScriptProcessor"
+          class="com.parakhcomputer.jdbc.core.SqlScriptProcessor"
+          p:dataSource-ref="dataSource"
+          p:initOnStartup="true"
+          p:charset="UTF-8">
+        <property name="sqlScripts">
+            <list>
+                <value>
+                    DROP TABLE COMPANY IF EXISTS;
+                    
+                    CREATE TABLE COMPANY (
+                        ID integer identity primary key,  
+                        NAME varchar(50) not null,
+                        DESCRIPTION varchar(255) not null, 
+                        ADDRESS varchar(255),
+                        CITY varchar(50) not null,
+                        STATE varchar(50) null,
+                        ZIP_POSTAL varchar(30) not null,
+                        COUNTRY varchar(50) not null,
+                        CREATED timestamp
+                    );
+                    
+                    INSERT INTO COMPANY(ID, NAME, DESCRIPTION, ADDRESS, CITY, STATE, ZIP_POSTAL, COUNTRY, CREATED) 
+                        VALUES(1, 'Korea Town', 'Food for though.', '강남구 삼성동 무역센터 코엑스', '서울시', null, '135-731', '대한민국', NOW());
+                </value>
+                <value>classpath:/schema.sql</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>

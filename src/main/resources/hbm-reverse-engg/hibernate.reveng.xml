@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table-filter match-schema="colorpalette" match-name=".*" />
+	<table-filter match-name="Palette" match-catalog="colorpalette"></table-filter>
+	<table-filter match-name="Theme" match-catalog="colorpalette"></table-filter>
+	<table catalog="colorpalette" name="Palette">
+		<column name="Palette_ID"></column>
+		<column name="Theme_ID"></column>
+		<column name="Name"></column>
+		<column name="value"></column>
+		<column name="Created"></column>
+	</table>
+	<table catalog="colorpalette" name="Theme">
+		<column name="Theme_ID"></column>
+		<column name="Theme_Name"></column>
+		<column name="Description"></column>
+		<column name="Created"></column>
+	</table>
+</hibernate-reverse-engineering>

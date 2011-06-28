@@ -1,0 +1,8 @@
+visit: http://www.altuure.com/2008/01/22/jaxb-quickstart-via-maven2/
+mvn jaxb2:xjc
+
+
+
+visit: XMLtoXSD
+http://www.dotkam.com/2008/05/28/generate-xsd-from-xml/
+
